@@ -30,6 +30,6 @@ Layout:
 
 ##License
 
-MIT License
+MIT LICENSE
 
-©2015 Caesor <liaozksysu@gmial.com>
+©2015 caesor <liaozksysu@gmail.com>
