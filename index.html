@@ -1,12 +1,128 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Game - Gray Box</title>
+<title>Racing Game</title>
 <meta charset="UTF-8">
-<meta name="description" >
-<meta name="author" >
+<meta name="description" content="a webgl game">
+<meta name="author" content="nemo">
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="app/css/game.css" />
+<script src="libs/Three.js"></script>
+<script src="libs/jquery-1.6.4.js"></script>
+<script src="libs/jquery.mousewheel.js"></script>
+<script src="libs/RequestAnimationFrame.js"></script>
+
+<script type="text/javascript" src="libs/digitaldisplay.js"></script>
+<script type="text/javascript" src="libs/speedometer.js"></script>
+<script type="text/javascript" src="libs/themes/default.js"></script>
+<script type="text/javascript" src="libs/themes/racing-black.js"></script>
+
+<script src="sim/sim.js"></script>
+<script src="sim/animation.js"></script>
+<script src="sim/webGLDetector.js"></script>	
+<script src="app/jsonModel.js"></script>
+<script src="app/car.js"></script>
+<script src="app/player.js"></script>
+<script src="app/exhaust.js"></script>
+<script src="app/environment.js"></script>	
+<script src="app/game.js"></script>
+
+<script type="text/javascript" src="app/xcanvas.js"></script>
+<script type="text/javascript" src="app/tbe.js"></script>
+<script>
+
+	var game_volume = 1;
+	
+	function loadSounds()
+	{
+		var sounds = {
+			driving : document.getElementById ('driving'),
+			rev_short : document.getElementById ('rev_short'),
+			rev_long : document.getElementById ('rev_long'),
+			bounce : document.getElementById ('bounce'),
+			crash : document.getElementById ('crash'),
+		};
+
+		return sounds;
+	}
+
+	function adjustVolume(sounds, volume)
+	{
+		for (sound in sounds)
+		{
+			sounds[sound].volume = volume;
+		}
+	}
+
+	var app = null;
+	
+	$(document).ready(
+		function() {
+
+			var container = document.getElementById("container");
+			
+			try {
+
+				Sim.WebGLDetector.detectWebGL();
+				
+	        	var timer = document.getElementById ('elapsedTime');
+	        	var odometer = document.getElementById ('odometer');
+	        	var kmph = document.getElementById ('kmph');
+	        	var rpm = document.getElementById ('rpm');
+
+	        	var sounds = loadSounds();
+	        	adjustVolume(sounds, game_volume);
+	        	        	
+	            // using speedometer components
+	            speedometer = new Speedometer ('speedometer', {theme: 'racing-black', max:250, 
+	            	threshold:150});
+	            speedometer.draw ();
+	            speedometer.addEventListener ('speedometer:animateend', function () {
+	              controls.start ();
+	            });
+	
+	            // The tachometer
+	            tachometer = new Speedometer ('tachometer', {theme: 'racing-black', max:5000, 
+	               threshold:3500});
+	            tachometer.draw();
+	            tachometer.addEventListener ('speedometer:animateend', function () {
+	              tachcontrols.start ();
+	            });
+	
+	
+				app = new RacingGame();
+				app.init({ container: container, 
+					hud: {
+						speedometer:speedometer,
+						tachometer:tachometer,
+						timer:timer, 
+						odometer:odometer,
+						},
+					sounds : sounds,
+				});
+	
+	            timer.style.display = 'block';
+	            odometer.style.display = 'block';
+	            kmph.style.display = 'block';
+	            rpm.style.display = 'block';
+
+	        	app.focus();            
+				app.run();
+	
+			}
+			catch(e)
+			{
+				container.innerHTML = e.toString();		
+			}			
+		}	
+	);
+
+	function onRestartClicked()
+	{
+		app.restart();
+	}
+
+</script>
 </head>
 <body>
     <center><h1>Road Race!</h1></center>
@@ -30,21 +146,13 @@
     <div id="overlay" class="overlay" >
     <div id="header" class="header">RACE COMPLETE</div>
     <div id="contents" class="contents">
-    ELAPSED TIME: 42.43s<br></br>
-    BEST TIME: 39.31s
+    挑战耗时: 42.43s<br></br>
+    最佳成绩: 39.31s
     </div>
-    <div id="restartButton" class="restartButton"><button onclick="onRestartClicked(this);">Restart</button></div>
+    <div id="restartButton" class="restartButton"><button onclick="onRestartClicked(this);">再来一次</button></div>
     </div>
 
-    <!-- Sound credits -->
-    <!-- 
-
-    Driving in a Car http://www.freesound.org/people/RutgerMuller/sounds/50910/
-    Nissan Maxima Burnout http://www.freesound.org/people/audible-edge/sounds/71740/
-    Car Crash http://www.freesound.org/people/sandyrb/sounds/95078/
-    Car Revving http://www.freesound.org/people/Walter_Odington/sounds/18620/
-     -->
-
+    <!-- imports autio fils here -->
 	<audio id="driving">
 	  <source src="../sounds/50910__rutgermuller__in-car-driving.wav" type="audio/wav" />
 	  Your browser does not support WAV files in the audio element.
@@ -66,121 +174,5 @@
 	  Your browser does not support WAV files in the audio element.
 	</audio>
 
-    <script src="libs/Three.js"></script>
-	<script src="libs/jquery-1.6.4.js"></script>
-    <script src="libs/jquery.mousewheel.js"></script>
-	<script src="libs/RequestAnimationFrame.js"></script>
-	<script src="sim/sim.js"></script>
-	<script src="sim/animation.js"></script>
-	<script src="sim/webGLDetector.js"></script>	
-	<script src="app/jsonModel.js"></script>
-	<script src="app/car.js"></script>
-	<script src="app/player.js"></script>
-	<script src="app/exhaust.js"></script>
-	<script src="app/environment.js"></script>
-	<script src="app/game.js"></script>
-
-	<script type="text/javascript" src="app/xcanvas.js"></script>
-    <script type="text/javascript" src="app/tbe.js"></script>
-
-    <script type="text/javascript" src="app/digitaldisplay.js"></script>
-    <script type="text/javascript" src="app/speedometer.js"></script>
-    <script type="text/javascript" src="app/themes/default.js"></script>
-    <script type="text/javascript" src="app/themes/racing-black.js"></script>
-	<script>
-
-		var game_volume = 1;
-		
-		function loadSounds()
-		{
-			var sounds = {
-				driving : document.getElementById ('driving'),
-				rev_short : document.getElementById ('rev_short'),
-				rev_long : document.getElementById ('rev_long'),
-				bounce : document.getElementById ('bounce'),
-				crash : document.getElementById ('crash'),
-			};
-
-			return sounds;
-		}
-
-		function adjustVolume(sounds, volume)
-		{
-			for (sound in sounds)
-			{
-				sounds[sound].volume = volume;
-			}
-		}
-
-		var app = null;
-		
-		$(document).ready(
-			function() {
-
-				var container = document.getElementById("container");
-				
-				try {
-
-					Sim.WebGLDetector.detectWebGL();
-					
-		        	var timer = document.getElementById ('elapsedTime');
-		        	var odometer = document.getElementById ('odometer');
-		        	var kmph = document.getElementById ('kmph');
-		        	var rpm = document.getElementById ('rpm');
-
-		        	var sounds = loadSounds();
-		        	adjustVolume(sounds, game_volume);
-		        	        	
-		            // Check out configuration and API on GitHub Wiki:
-		            // http://wiki.github.com/vjt/canvas-speedometer
-		            speedometer = new Speedometer ('speedometer', {theme: 'racing-black', max:250, 
-		            	threshold:150});
-		            speedometer.draw ();
-		            speedometer.addEventListener ('speedometer:animateend', function () {
-		              controls.start ();
-		            });
-		
-		            // The tachometer
-		            tachometer = new Speedometer ('tachometer', {theme: 'racing-black', max:5000, 
-		               threshold:3500});
-		            tachometer.draw();
-		            tachometer.addEventListener ('speedometer:animateend', function () {
-		              tachcontrols.start ();
-		            });
-		
-		
-					app = new RacingGame();
-					app.init({ container: container, 
-						hud: {
-							speedometer:speedometer,
-							tachometer:tachometer,
-							timer:timer, 
-							odometer:odometer,
-							},
-						sounds : sounds,
-					});
-		
-		            timer.style.display = 'block';
-		            odometer.style.display = 'block';
-		            kmph.style.display = 'block';
-		            rpm.style.display = 'block';
-
-		        	app.focus();            
-					app.run();
-		
-				}
-				catch(e)
-				{
-					container.innerHTML = e.toString();		
-				}			
-			}	
-		);
-
-		function onRestartClicked()
-		{
-			app.restart();
-		}
-
-	</script>
 </body>
 </html>

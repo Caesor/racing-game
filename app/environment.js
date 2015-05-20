@@ -54,10 +54,7 @@ Environment.prototype.init = function(param)
 Environment.prototype.createSky = function()
 {
 	var texture = null;
-	
-	// Clouds by moodflow
-	// http://www.turbosquid.com/Search/Artists/moodflow
-	// http://www.turbosquid.com/FullPreview/Index.cfm/ID/433395		
+			
 	if (this.textureSky)
 	{
 		texture = THREE.ImageUtils.loadTexture('../images/clouds1273.jpg');
@@ -112,10 +109,7 @@ Environment.prototype.createGround = function()
 Environment.prototype.createRoad = function()
 {    
 	var texture = null;	
-
-	// Road texture by Arenshi
-	// http://www.turbosquid.com/Search/Artists/Arenshi
-	// http://www.turbosquid.com/FullPreview/Index.cfm/ID/414729		
+	
 	var texture = THREE.ImageUtils.loadTexture('../images/road-rotated.jpg');
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
     texture.repeat.set(1, 40);
@@ -137,9 +131,6 @@ Environment.prototype.createGuardRails = function()
 {    
 	var texture = null;	
 
-	// Guard rail by scimdia
-	// http://www.turbosquid.com/Search/Artists/scimdia
-	// http://www.turbosquid.com/FullPreview/Index.cfm/ID/365705
 	var texture = THREE.ImageUtils.loadTexture('../images/Guard_Rail-rotated.jpg');
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
     texture.repeat.set(1, 40);
