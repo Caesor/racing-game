@@ -4,6 +4,7 @@
 <title>Racing Game</title>
 <meta charset="UTF-8">
 <meta name="description" content="a webgl game">
+<meta name="keywords" content="webgl game canvas javascript">
 <meta name="author" content="nemo">
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="app/css/game.css" />
@@ -12,10 +13,10 @@
 <script src="libs/jquery.mousewheel.js"></script>
 <script src="libs/RequestAnimationFrame.js"></script>
 
-<script type="text/javascript" src="libs/digitaldisplay.js"></script>
-<script type="text/javascript" src="libs/speedometer.js"></script>
-<script type="text/javascript" src="libs/themes/default.js"></script>
-<script type="text/javascript" src="libs/themes/racing-black.js"></script>
+<script src="libs/digitaldisplay.js"></script>
+<script src="libs/speedometer.js"></script>
+<script src="libs/themes/default.js"></script>
+<script src="libs/themes/racing-black.js"></script>
 
 <script src="sim/sim.js"></script>
 <script src="sim/animation.js"></script>
@@ -27,8 +28,8 @@
 <script src="app/environment.js"></script>	
 <script src="app/game.js"></script>
 
-<script type="text/javascript" src="app/xcanvas.js"></script>
-<script type="text/javascript" src="app/tbe.js"></script>
+<script src="app/xcanvas.js"></script>
+<script src="app/tbe.js"></script>
 <script>
 
 	var game_volume = 1;
@@ -133,23 +134,31 @@
 	km/h
        <div id="speedometer"></div>
 	</div>
+	
 	<div id="rpm">
 	rpm
        <div id="tachometer"></div>
 	</div>
+    
     <div id="odometer">
     0.00
     </div>
+    
     <div id="elapsedTime">
     0.00
     </div>
+    
     <div id="overlay" class="overlay" >
-    <div id="header" class="header">RACE COMPLETE</div>
+    
+    <div id="header" class="header">Race Complete</div>
+    
     <div id="contents" class="contents">
-    挑战耗时: 42.43s<br></br>
-    最佳成绩: 39.31s
+	    Elapsed Time: 42.43s<br></br>
+	    Best Time: 39.31s
     </div>
-    <div id="restartButton" class="restartButton"><button onclick="onRestartClicked(this);">再来一次</button></div>
+    
+    <div id="restartButton" class="restartButton">
+    	<button onclick="onRestartClicked(this);">再来一次</button></div>
     </div>
 
     <!-- imports autio fils here -->
