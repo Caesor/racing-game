@@ -85,7 +85,7 @@ Environment.prototype.createGround = function()
 	// Sand texture
 	if (this.textureGround)
 	{
-		texture = THREE.ImageUtils.loadTexture('images/Sand_002.JPG');
+		texture = THREE.ImageUtils.loadTexture('images/sand.jpg');
 	    texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
 	    texture.repeat.set(10, 10);
 	}
