@@ -89,7 +89,7 @@ RacingGame.prototype.loadCars = function()
 					scale:0.17, 
 					position:{x:1, y:-.5, z:Car.CAR_LENGTH},
 					rotation:{x:-Math.PI / 2, y:0, z:0},
-					m"models/Camaro-1/camaro_4.jpg",
+					map:"models/Camaro-1/camaro_4.jpg",
 					mapIndex:0
 				}); }
 			}				
