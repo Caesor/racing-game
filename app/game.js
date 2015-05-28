@@ -56,7 +56,7 @@ RacingGame.prototype.loadCars = function()
 	var model = new JSONModel;
 	model.init(
 			{
-				url : "../models/Nova Car/NovaCar.js",
+				url : "models/Nova Car/NovaCar.js",
 				callback: function(model) { that.onCarLoaded(model, "nova", 
 				{
 					scale:0.7, 
@@ -69,7 +69,7 @@ RacingGame.prototype.loadCars = function()
     model = new JSONModel;
 	model.init(
 			{
-				url : "../models/Camaro-1/Camaro.js",
+				url : "models/Camaro-1/Camaro.js",
 				callback: function(model) { that.onCarLoaded(model, "camaro", 
 				{
 					scale:0.17, 
@@ -82,14 +82,14 @@ RacingGame.prototype.loadCars = function()
     model = new JSONModel;
 	model.init(
 			{
-				url : "../models/Camaro-1/Camaro.js",
+				url : "models/Camaro-1/Camaro.js",
 				callback: function(model) 
 				{ that.onCarLoaded(model, "camaro_silver", 
 				{
 					scale:0.17, 
 					position:{x:1, y:-.5, z:Car.CAR_LENGTH},
 					rotation:{x:-Math.PI / 2, y:0, z:0},
-					map:"../models/Camaro-1/camaro_4.jpg",
+					m"../models/Camaro-1/camaro_4.jpg",
 					mapIndex:0
 				}); }
 			}				
@@ -112,7 +112,7 @@ RacingGame.prototype.loadRacer = function()
 {
 	var that = this;
 	var model = new JSONModel;
-	model.init({ url : "../models/Nissan GTR OBJ/Objects/NissanOBJ1.js", scale:0.0254,
+	model.init({ url : "models/Nissan GTR OBJ/Objects/NissanOBJ1.js", scale:0.0254,
 		callback: function(model) { that.onRacerLoaded(model); }
 	});
 }

@@ -57,7 +57,7 @@ Environment.prototype.createSky = function()
 			
 	if (this.textureSky)
 	{
-		texture = THREE.ImageUtils.loadTexture('../images/clouds1273.jpg');
+		texture = THREE.ImageUtils.loadTexture('images/clouds1273.jpg');
 	    texture.wrapS = texture.wrapT = THREE.MirroredRepeatWrapping;
 	    texture.repeat.set(1, 1);
 	}
@@ -85,7 +85,7 @@ Environment.prototype.createGround = function()
 	// Sand texture
 	if (this.textureGround)
 	{
-		texture = THREE.ImageUtils.loadTexture('../images/Sand_002.jpg');
+		texture = THREE.ImageUtils.loadTexture('images/Sand_002.jpg');
 	    texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
 	    texture.repeat.set(10, 10);
 	}
@@ -110,7 +110,7 @@ Environment.prototype.createRoad = function()
 {    
 	var texture = null;	
 	
-	var texture = THREE.ImageUtils.loadTexture('../images/road-rotated.jpg');
+	var texture = THREE.ImageUtils.loadTexture('images/road-rotated.jpg');
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
     texture.repeat.set(1, 40);
 
@@ -131,7 +131,7 @@ Environment.prototype.createGuardRails = function()
 {    
 	var texture = null;	
 
-	var texture = THREE.ImageUtils.loadTexture('../images/Guard_Rail-rotated.jpg');
+	var texture = THREE.ImageUtils.loadTexture('images/Guard_Rail-rotated.jpg');
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
     texture.repeat.set(1, 40);
 	
@@ -171,7 +171,7 @@ Environment.prototype.createFinishLine = function()
 
 	if (this.textureFinishLine)
 	{
-		texture = THREE.ImageUtils.loadTexture('../images/game-finish-line.png');
+		texture = THREE.ImageUtils.loadTexture('images/game-finish-line.png');
 	}
 	else
 	{
