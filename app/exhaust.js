@@ -26,7 +26,7 @@ Exhaust.prototype.initParticles = function()
 			size: 1,
 			opacity:.05,
 			transparent:true,
-			map: new THREE.ImageUtils.loadTexture('../images/smoke-2.png')
+			map: new THREE.ImageUtils.loadTexture('images/smoke-2.png')
 		});
 
 

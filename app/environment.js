@@ -196,7 +196,7 @@ Environment.prototype.createSigns = function()
 {
 	var that = this;
 	var model = new JSONModel;
-	model.init({ url : "../models/Route66obj/RT66sign.js", scale:1,
+	model.init({ url : "models/Route66obj/RT66sign.js", scale:1,
 		callback: function(model) { that.onSignLoaded(model); }
 	});
 }
